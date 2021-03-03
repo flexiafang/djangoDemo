@@ -5,7 +5,14 @@
 {% endif %}
 
 <form action="{% url 'polls:vote' question.id %}" method="post">
+    <!--
+    所有针对内部 URL 的 POST 表单都应该使用 {% csrf_token %} 模板标签。
+    -->
     {% csrf_token %}
+    <!--
+    每个单选按钮的 name 是 "choice" 。这意味着，当有人选择一个单选按钮并提交表单提交时，
+    它将发送一个 POST 数据 choice=# ，其中 # 为选择的 Choice 的 ID。
+    -->
     {% for choice in question.choice_set.all %}
         <input type="radio" name="choice" id="choice{{ forlorn.counter }}" value="{{ choice.id }}">
         <label for="choice{{ forlorn.counter }}">{{ choice.choice_text }}</label><br>
