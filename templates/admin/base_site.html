@@ -1,0 +1,13 @@
+<!--
+从存放 Django 默认模板的目录（django/contrib/admin/templates）内的模板文件 admin/base_site.html 复制到这个目录内
+-->
+
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Polls Administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
